@@ -1,6 +1,9 @@
 const http = require('http').createServer();
 const io = require('socket.io')(http, {
-    cors: { origin: "*", methods: ["GET", "POST"] } 
+    cors: {
+        origin: "*", // ЭТО РАЗРЕШИТ ПОДКЛЮЧЕНИЕ И УБЕРЕТ ОШИБКУ CORS
+        methods: ["GET", "POST"]
+    }
 });
 
 let rooms = {};
@@ -30,4 +33,4 @@ io.on('connection', (socket) => {
 });
 
 const PORT = process.env.PORT || 3000;
-http.listen(PORT, () => console.log('Server online on port ' + PORT));
+http.listen(PORT, () => console.log('Server is running on port ' + PORT));
